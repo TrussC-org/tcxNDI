@@ -1,0 +1,11 @@
+# OS specific
+.DS_Store
+
+# Example build artifacts (handled by example/.gitignore)
+example-*/build/
+example-*/build-*/
+example-*/bin/
+example-*/xcode/
+example-*/vs/
+example-*/.vscode/
+example-*/CMakeLists.txt
