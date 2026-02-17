@@ -106,6 +106,7 @@ if(NDI_SDK_FOUND)
             TrussC
             ${NDI_LIBRARY}
         )
+        target_compile_definitions(${ADDON_NAME} INTERFACE TCX_NDI_AVAILABLE)
     else()
         add_library(${ADDON_NAME} STATIC ${ADDON_SOURCES} ${ADDON_HEADERS})
         target_include_directories(${ADDON_NAME} PUBLIC
@@ -116,6 +117,7 @@ if(NDI_SDK_FOUND)
             TrussC
             ${NDI_LIBRARY}
         )
+        target_compile_definitions(${ADDON_NAME} PUBLIC TCX_NDI_AVAILABLE)
     endif()
 
     # macOS: Set rpath for dylib

@@ -4,9 +4,6 @@
 // tcxNDI - NDI integration addon for TrussC
 // =============================================================================
 //
-// Status: Not implemented yet (placeholder)
-// See README.md for design plan and API documentation
-//
 // Usage:
 //   #include <TrussC.h>
 //   #include <tcxNDI.h>
@@ -22,12 +19,10 @@
 
 #include <TrussC.h>
 
-// NDI SDK header (requires NDI SDK to be installed)
-// #include <Processing.NDI.Lib.h>
-
-namespace tcx {
-
-// TODO: Implement NDISender and NDIReceiver
-// See README.md for planned API
-
-} // namespace tcx
+#ifdef TCX_NDI_AVAILABLE
+#include <Processing.NDI.Lib.h>
+#include "tcxNDISender.h"
+#include "tcxNDIReceiver.h"
+#else
+#warning "tcxNDI: NDI SDK not found - NDI functionality disabled. Download from https://ndi.video/download-ndi-sdk/"
+#endif
