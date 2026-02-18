@@ -6,7 +6,7 @@ Send and receive video/audio over the network using the NDI protocol.
 
 ## Features
 
-- **NDISender**: Send video frames (Texture, Fbo, Pixels, raw data) over NDI
+- **NDISender**: Send video frames (Fbo, Pixels, raw data) over NDI
 - **NDIReceiver**: Discover NDI sources, connect, and receive video to Texture/Pixels
 - Async sending mode for non-blocking operation
 - Frame rate control
@@ -115,7 +115,7 @@ void draw() {
 |--------|-------------|
 | `setup(name, w, h)` | Create NDI sender |
 | `close()` | Stop sending |
-| `send(Texture/Fbo/Pixels)` | Send a video frame |
+| `send(Fbo/Pixels)` | Send a video frame |
 | `send(data, w, h, ch)` | Send raw pixel data |
 | `setFrameRate(fps)` | Set output frame rate |
 | `setAsync(bool)` | Enable async sending |
@@ -161,7 +161,8 @@ void draw() {
 
 - [NDI SDK Download](https://ndi.video/download-ndi-sdk/)
 - [NDI SDK Documentation](https://docs.ndi.video/)
-- [leadedge/ofxNDI](https://github.com/leadedge/ofxNDI)
+- [leadedge/ofxNDI](https://github.com/leadedge/ofxNDI) — API design reference (simple Sender/Receiver pattern)
+- [nariakiiwatani/ofxNDI](https://github.com/nariakiiwatani/ofxNDI) — Audio API design reference
 
 ## License
 
