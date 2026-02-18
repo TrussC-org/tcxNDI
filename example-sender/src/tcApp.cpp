@@ -37,7 +37,7 @@ void tcApp::draw() {
     pushMatrix();
     translate(fbo.getWidth() / 2.0f, fbo.getHeight() / 2.0f);
     rotate(getElapsedTimef() * 0.3f);
-    drawRectangle(-100, -100, 200, 200);
+    drawRect(-100, -100, 200, 200);
     popMatrix();
 
     setColor(1);

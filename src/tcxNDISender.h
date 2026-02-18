@@ -111,29 +111,20 @@ public:
         return send(pixels.getData(), pixels.getWidth(), pixels.getHeight());
     }
 
-    // Send from Texture (readback to CPU first)
-    bool send(const tc::Texture& texture) {
-        if (!setup_ || !texture.isAllocated()) return false;
+    // Send from FBO (readback via Fbo::readPixels)
+    bool send(tc::Fbo& fbo) {
+        if (!setup_ || !fbo.isAllocated()) return false;
 
-        int w = texture.getWidth();
-        int h = texture.getHeight();
+        int w = fbo.getWidth();
+        int h = fbo.getHeight();
 
         size_t requiredSize = (size_t)w * h * 4;
         if (pixelBuffer_.size() != requiredSize) {
             pixelBuffer_.resize(requiredSize);
         }
 
-        tc::Pixels tempPixels;
-        texture.readToPixels(tempPixels);
-        if (!tempPixels.isAllocated()) return false;
-
-        return send(tempPixels.getData(), w, h);
-    }
-
-    // Send from FBO
-    bool send(const tc::Fbo& fbo) {
-        if (!setup_ || !fbo.isAllocated()) return false;
-        return send(fbo.getTexture());
+        if (!fbo.readPixels(pixelBuffer_.data())) return false;
+        return send(pixelBuffer_.data(), w, h);
     }
 
     // =========================================================================

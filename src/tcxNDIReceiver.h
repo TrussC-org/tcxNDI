@@ -196,6 +196,16 @@ public:
     bool receive(tc::Texture& texture) {
         if (!receive(tempPixels_)) return false;
 
+        int w = tempPixels_.getWidth();
+        int h = tempPixels_.getHeight();
+        int ch = tempPixels_.getChannels();
+
+        // Allocate or reallocate texture if size changed
+        if (!texture.isAllocated() ||
+            texture.getWidth() != w || texture.getHeight() != h) {
+            texture.allocate(w, h, ch, tc::TextureUsage::Dynamic);
+        }
+
         texture.loadData(tempPixels_);
         return true;
     }
