@@ -1,0 +1,8 @@
+{
+  "description": "NDI video send/receive (NewTek NDI SDK)",
+  "author": "tettou771",
+  "license": "MIT",
+  "category": "video",
+  "platforms": ["macos", "windows", "linux"],
+  "keywords": ["ndi", "video", "network", "streaming"]
+}

@@ -11,7 +11,7 @@
 #include <cstring>
 #include <cmath>
 
-namespace tcx {
+namespace tcx::ndi {
 
 class NDISender {
 public:
@@ -215,4 +215,14 @@ private:
     std::vector<uint8_t> pixelBuffer_;
 };
 
-} // namespace tcx
+}  // namespace tcx::ndi
+
+// -----------------------------------------------------------------------------
+// Backward compatibility. The canonical namespace is now `tcx::ndi`. These
+// silent aliases keep older code compiling: flat `tcx::NDISender` and legacy
+// `trussc::NDISender`. DEPRECATED — removed in v1.0.0.
+// (No [[deprecated]] attribute: under the usual `using namespace tc;` it would
+//  warn on idiomatic unqualified use too. See tcxNDI README for migration.)
+// -----------------------------------------------------------------------------
+namespace tcx    { using ndi::NDISender; } // deprecated: remove at v1.0.0
+namespace trussc { using tcx::ndi::NDISender; } // deprecated: remove at v1.0.0

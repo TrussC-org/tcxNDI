@@ -10,7 +10,7 @@
 #include <vector>
 #include <cstring>
 
-namespace tcx {
+namespace tcx::ndi {
 
 // NDI source information
 struct NDISource {
@@ -286,4 +286,15 @@ private:
     tc::Pixels tempPixels_;
 };
 
-} // namespace tcx
+}  // namespace tcx::ndi
+
+// -----------------------------------------------------------------------------
+// Backward compatibility. The canonical namespace is now `tcx::ndi`. These
+// silent aliases keep older code compiling: flat `tcx::NDISource` /
+// `tcx::NDIReceiver` and legacy `trussc::` spellings. DEPRECATED — removed in
+// v1.0.0.
+// (No [[deprecated]] attribute: under the usual `using namespace tc;` it would
+//  warn on idiomatic unqualified use too. See tcxNDI README for migration.)
+// -----------------------------------------------------------------------------
+namespace tcx    { using ndi::NDISource; using ndi::NDIReceiver; } // deprecated: remove at v1.0.0
+namespace trussc { using tcx::ndi::NDISource; using tcx::ndi::NDIReceiver; } // deprecated: remove at v1.0.0
